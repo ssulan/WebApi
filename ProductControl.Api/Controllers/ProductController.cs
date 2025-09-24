@@ -13,8 +13,8 @@ namespace ProductControl.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-
-        private static List<Product> _products = new();
+        //Create a private static list to store the products.
+        private static List<Product> _products = new(); 
 
         // GET: api/values
         [HttpGet]
@@ -49,8 +49,7 @@ namespace ProductControl.Api.Controllers
                 return;
             }
 
-            //_products[index] = product;
-
+            //Updating _product list
             _products[index].Name = product.Name;
             _products[index].Price = product.Price;
             _products[index].Category = product.Category;
