@@ -32,21 +32,23 @@ namespace ProductControl.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post(Product product)
+        public IActionResult AddItem(Product product)
         {
             product.Id = _products.Count + 1;
             _products.Add(product);
+
+            return Ok("Successfully Added.");
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, Product product)
+        public IActionResult UpdateItem(int id, Product product)
         {
             var index = _products.FindIndex(x => x.Id == id);
 
             if (index == -1)
             {
-                return;
+                return BadRequest("Update Failed.");
             }
 
             //Updating _product list
@@ -54,17 +56,18 @@ namespace ProductControl.Api.Controllers
             _products[index].Price = product.Price;
             _products[index].Category = product.Category;
 
+            return Ok("Successfully Updated.");
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             var index = _products.FindIndex(x => x.Id == id);
 
             if (index == -1)
             {
-                return;
+                return BadRequest("Failed to Delete");
             }
 
             _products.RemoveAt(index);
@@ -77,6 +80,8 @@ namespace ProductControl.Api.Controllers
                 _products[counter - 1].Id = counter;
                 counter++;
             }
+
+            return Ok("Successfully Deleted.");
 
         }
 
