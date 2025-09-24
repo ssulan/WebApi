@@ -61,7 +61,7 @@ namespace ProductControl.Api.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteItem(int id)
         {
             var index = _products.FindIndex(x => x.Id == id);
 
